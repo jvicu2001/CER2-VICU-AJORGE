@@ -2,6 +2,7 @@ from typing import Any
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
+from django.db.models.query import QuerySet
 from django.http.request import HttpRequest
 
 from .models import AdminEntidad, Comunicado, Entidad
@@ -19,7 +20,7 @@ class ComunicadoAdmin(admin.ModelAdmin):
             return ('publicado_por', 'modificado_por', 'fecha_publicacion', 'entidad', )
         return None
 
-    def save_model(self, request, obj, form, change):
+    def save_model(self, request: Any, obj: Any, form: Any, change: Any) -> None:
         # Si no es superusuario, se asigna el usuario actual como publicado_por, y se asigna la entidad del usuario
         if not request.user.is_superuser:
             if not change:
@@ -32,7 +33,7 @@ class ComunicadoAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
     # Modifica el queryset para que solo se muestren los comunicados de la entidad correspondiente
-    def get_queryset(self, request):
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
         qs = super(ComunicadoAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
