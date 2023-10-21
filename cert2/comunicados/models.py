@@ -11,6 +11,9 @@ class Entidad(models.Model):
     def __str__(self):
         return self.nombre
     
+    class Meta:
+        verbose_name_plural = "Entidades"
+    
 class Comunicado(models.Model):
     TIPO_CHOICES = [
         ("S", "Suspensión de actividades"),
