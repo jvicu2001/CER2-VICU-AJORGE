@@ -32,6 +32,13 @@ class ComunicadoAdmin(admin.ModelAdmin):
                 obj.modificado_por = request.user
         super().save_model(request, obj, form, change)
 
+    # No permitir que se eliminen comunicados de otras entidades
+    def delete_model(self, request: HttpRequest, obj: Any) -> None:
+        if not request.user.is_superuser:
+            if obj.entidad is not request.user.adminentidad.entidad:
+                return
+        return super().delete_model(request, obj)
+
     # Modifica el queryset para que solo se muestren los comunicados de la entidad correspondiente
     def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
         qs = super(ComunicadoAdmin, self).get_queryset(request)
