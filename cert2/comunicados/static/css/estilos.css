@@ -1,0 +1,11 @@
+.logos {
+    max-width: 100%;
+    max-height: 128px;
+}
+
+@media (min-width: 992px) {
+    .navbar {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+}
