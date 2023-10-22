@@ -10,7 +10,7 @@ from .models import AdminEntidad, Comunicado, Entidad
 # Register your models here.
 admin.site.register(Entidad)
 
-# https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.get_queryset
+
 @admin.register(Comunicado)
 class ComunicadoAdmin(admin.ModelAdmin):
     
@@ -40,6 +40,7 @@ class ComunicadoAdmin(admin.ModelAdmin):
         return super().delete_model(request, obj)
 
     # Modifica el queryset para que solo se muestren los comunicados de la entidad correspondiente
+    # https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.get_queryset
     def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
         qs = super(ComunicadoAdmin, self).get_queryset(request)
         if request.user.is_superuser:
