@@ -22,10 +22,43 @@
                 <a class="nav-link active" aria-current="page" href="#">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Administración</a>
+                <a class="nav-link" href="admin/">Administración</a>
               </li>
             </ul>
         </div>
     </div>
 </nav>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <!--
+        Filtrado por departamento
+        TODO: Realizar filtrado por departamento
+    -->
+    <select name="" id="" class="form-select">
+        <option value="" selected>Departamento</option>
+        {% for entidad in entidades %}
+            <option value="{{ entidad.id }}">{{ entidad.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <!--Grid Comunicados-->
+    <div class="row">
+        {% for comunicado in comunicados %}
+
+        <div class="col col-lg-4">
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ comunicado.entidad.nombre }}</h6>
+                    <p class="card-text">{{ comunicado.detalle_corto }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
