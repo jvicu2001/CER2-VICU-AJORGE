@@ -22,8 +22,8 @@ class Comunicado(models.Model):
     ]
 
     id = models.BigAutoField(primary_key=True)
-    titulo = models.CharField(max_length=100)
-    detalle = models.CharField(max_length=1000)
+    titulo = models.CharField(max_length=200)
+    detalle = models.CharField(max_length=20000)
     detalle_corto = models.CharField(max_length=100)
     tipo = models.CharField(max_length=1, choices=TIPO_CHOICES)
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
