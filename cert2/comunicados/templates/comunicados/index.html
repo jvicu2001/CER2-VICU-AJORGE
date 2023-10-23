@@ -5,7 +5,7 @@
 
 <div class="row text-center">
     <div class="col-md-12 col-lg-3"> <!--Logo institucional-->
-        <img src="{% static 'images/LOGO_UTFSM.png' %}" alt="" class="logos">
+        <img src="{% static 'images/Logo_UTFSM.png' %}" alt="" class="logos">
     </div>
     <div class="col-md-12 col-lg-9 d-flex justify-content-center align-items-center">
         <h1>Sistema integrado de Notificaciones</h1>
@@ -51,7 +51,10 @@
         <div class="col col-lg-4">
             <div class="card w-100">
                 <div class="card-body">
-                    <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                    <a href="{% url 'comunicado' comunicado.id %}">
+                        <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                    </a>
+                    
                     <h6 class="card-subtitle mb-2 text-muted">{{ comunicado.entidad.nombre }}</h6>
                     <p class="card-text">{{ comunicado.detalle_corto }}</p>
                 </div>
