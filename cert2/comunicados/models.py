@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class Entidad(models.Model):
     id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='logos', null=True, blank=True)
+    logo = models.ImageField(upload_to='comunicados/static/logos', null=True, blank=True)
 
     def __str__(self):
         return self.nombre

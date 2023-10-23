@@ -13,3 +13,14 @@ def index(request):
             'comunicados': comunicados,
             'entidades': entidades
         },)
+
+def comunicado(request, id):
+    comunicado = Comunicado.objects.filter(id=id).first
+
+    return render(
+        request,
+        'comunicados/comunicado.html',
+        context={
+            'comunicado': comunicado
+        }
+    )

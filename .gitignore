@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 # Logos proyecto django
-/cert2/logos/
+/cert2/comunicados/static/logos
