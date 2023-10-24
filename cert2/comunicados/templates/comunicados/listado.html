@@ -38,7 +38,7 @@
         TODO: Realizar filtrado por departamento
     -->
 
-    <form action="" method="get" name="entidad" class="mb-3">
+    <form action="" method="get" name="entidad" class="mb-3 w-50">
         <select name="id" id="" class="form-select" onchange="document.entidad.submit()">
             <option value="0" {% if not id_entidad_actual %}selected{% endif %}>Todo</option>
             {% for entidad in entidades %}
