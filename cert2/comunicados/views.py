@@ -4,7 +4,7 @@ from .models import Comunicado, Entidad
 
 # Create your views here.
 def index(request):
-    return redirect(listado, 0)
+    return redirect(listado)
 
 def listado(request: HttpRequest):
     entidad_id = int(request.GET.get('id', 0))
