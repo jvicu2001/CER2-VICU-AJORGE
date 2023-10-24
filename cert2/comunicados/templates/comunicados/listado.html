@@ -22,7 +22,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin/">Administración</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
               </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
         TODO: Realizar filtrado por departamento
     -->
 
-    <form action="" method="get" name="entidad">
+    <form action="" method="get" name="entidad" class="mb-3">
         <select name="id" id="" class="form-select" onchange="document.entidad.submit()">
             <option value="0" {% if not id_entidad_actual %}selected{% endif %}>Todo</option>
             {% for entidad in entidades %}
@@ -52,16 +52,18 @@
         {% for comunicado in comunicados %}
 
         <div class="col col-lg-4">
-            <div class="card w-100">
-                <div class="card-body">
-                    <a href="{% url 'comunicado' comunicado.id %}">
-                        <h5 class="card-title">{{ comunicado.titulo }}</h5>
-                    </a>
-                    
-                    <h6 class="card-subtitle mb-2 text-muted">{{ comunicado.entidad.nombre }}</h6>
-                    <p class="card-text">{{ comunicado.detalle_corto }}</p>
+            <a href="{% url 'comunicado' comunicado.id %}" class="text-decoration-none">
+                <div class="card w-100">
+                    <div class="card-body">
+                        
+                            <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                        
+                        
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comunicado.entidad.nombre }}</h6>
+                        <p class="card-text">{{ comunicado.detalle_corto }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         {% endfor %}
