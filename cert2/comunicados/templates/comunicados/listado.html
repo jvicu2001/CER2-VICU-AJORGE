@@ -7,7 +7,7 @@
     <div class="col-md-12 col-lg-3"> <!--Logo institucional-->
         <img src="{% static 'images/Logo_UTFSM.png' %}" alt="" class="logos">
     </div>
-    <div class="col-md-12 col-lg-9 d-flex justify-content-center align-items-center">
+    <div class="col-lg-9 d-flex justify-content-center align-items-center my-auto d-none d-lg-block">
         <h1>Sistema integrado de Notificaciones</h1>
     </div>
 </div>
@@ -37,12 +37,15 @@
         Filtrado por departamento
         TODO: Realizar filtrado por departamento
     -->
-    <select name="" id="" class="form-select">
-        <option value="" selected>Departamento</option>
-        {% for entidad in entidades %}
-            <option value="{{ entidad.id }}">{{ entidad.nombre }}</option>
-        {% endfor %}
-    </select>
+
+    <form action="" method="get" name="entidad">
+        <select name="id" id="" class="form-select" onchange="document.entidad.submit()">
+            <option value="0" {% if not id_entidad_actual %}selected{% endif %}>Todo</option>
+            {% for entidad in entidades %}
+                <option value="{{ entidad.id }}" {% if entidad.id == id_entidad_actual %}selected{% endif %} >{{ entidad.nombre }}</option>
+            {% endfor %}
+        </select>
+    </form>
 
     <!--Grid Comunicados-->
     <div class="row">

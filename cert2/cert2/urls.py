@@ -22,5 +22,6 @@ from comunicados import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('listado/', views.listado, name='listado'),
     path('comunicado/<int:id>', views.comunicado, name='comunicado')
 ]
