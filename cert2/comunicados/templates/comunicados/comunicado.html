@@ -1,0 +1,38 @@
+{% extends "comunicados/base.html" %}
+{% load static %}
+
+{% block header %}
+
+<div class="row text-center">
+    <div class="col-md-12 col-lg-2"> <!--Logo institucional-->
+        <img src="{% static 'images/Logo_UTFSM.png' %}" alt="" class="logos">
+    </div>
+    <div class="col-md-12 col-lg-8 d-flex justify-content-center align-items-center">
+        <h1>Sistema integrado de Notificaciones</h1>
+    </div>
+    <div class="col-md-12 col-lg-2"> <!--Logo institucional-->
+        <img src="{% static comunicado.entidad.logo %}" alt="" class="logos">
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">
+                {{ comunicado.titulo }}
+            </h1>
+            <h5 class="card-subtitle text-body-secondary">
+                {{ comunicado.entidad.nombre }}
+            </h5>
+            <p class="card-text">
+                {{ comunicado.detalle }}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

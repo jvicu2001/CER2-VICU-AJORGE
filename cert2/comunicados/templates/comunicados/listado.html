@@ -1,0 +1,72 @@
+{% extends "comunicados/base.html" %}
+{% load static %}
+
+{% block header %}
+
+<div class="row">
+    <div class="col-md-12 col-lg-3 text-center"> <!--Logo institucional-->
+        <img src="{% static 'images/Logo_UTFSM.png' %}" alt="" class="logos">
+    </div>
+    <div class="col-lg-9 d-flex justify-content-center align-items-center my-auto d-none d-lg-block border-bottom">
+        <h1>Sistema integrado de Notificaciones</h1>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <!--
+        Filtrado por departamento
+        TODO: Realizar filtrado por departamento
+    -->
+
+    <form action="" method="get" name="entidad" class="mb-3 w-50">
+        <select name="id" id="" class="form-select" onchange="document.entidad.submit()">
+            <option value="0" {% if not id_entidad_actual %}selected{% endif %}>Todo</option>
+            {% for entidad in entidades %}
+                <option value="{{ entidad.id }}" {% if entidad.id == id_entidad_actual %}selected{% endif %} >{{ entidad.nombre }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <!--Grid Comunicados-->
+    <div class="row">
+        {% for comunicado in comunicados %}
+
+        <div class="col col-lg-4">
+            <a href="{% url 'comunicado' comunicado.id %}" class="text-decoration-none">
+                <div class="card w-100">
+                    <div class="card-body">
+                        
+                            <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                        
+                        
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comunicado.entidad.nombre }}</h6>
+                        <p class="card-text">{{ comunicado.detalle_corto }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
